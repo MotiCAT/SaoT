@@ -35,11 +35,14 @@ client.on('ready', () => {
 });
 client.on('presenceUpdate', async (oldPresence, newPresence) => {
 	if (newPresence.userId !== process.env.USER_ID) return;
-
 	const spotifyActivity = newPresence.activities.find((activity) => activity.name === 'Spotify');
 	if (!spotifyActivity) return;
 
+	const oldActivity = oldPresence.activities.find((activity) => activity.name === 'Spotify');
+	const { details: oldSongName, state: oldArtistName } = oldActivity || { details: '', state: '' };
+
 	const { details: songName, state: artistName } = spotifyActivity;
+	if (oldSongName === songName && oldArtistName === artistName) return;
 	const imageUrl = spotifyActivity.assets.largeImageURL();
 	try {
 		const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
