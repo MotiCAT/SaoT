@@ -17,9 +17,7 @@ export async function onPresenceUpdate(oldPresence: Presence | null, newPresence
 	const imageUrl = spotifyActivity?.assets?.largeImageURL();
 	try {
 		const response = await axios.get(imageUrl!, { responseType: 'arraybuffer' });
-		const compressedImageBuffer = await sharp(response.data)
-			.png({ quality: 80 })
-			.toBuffer();
+		const compressedImageBuffer = await sharp(response.data).png({ quality: 80 }).toBuffer();
 
 		writeFile('image.png', compressedImageBuffer, (err) => {
 			if (err) throw err;

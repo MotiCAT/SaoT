@@ -35,6 +35,7 @@ DISCORD_TOKEN=
   「**ステータスとしてSpotifyを表示する**」を有効化してください。
 
 ## 注意点
+
 UbuntuやLinux等のOSでは、別途  
 `npm install --os=linux --cpu=x64 sharp`  
 `npm install --force @img/sharp-linux-x64`  
