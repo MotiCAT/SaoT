@@ -13,14 +13,7 @@ const twiClient = new TwitterApi({
 const fs = require('fs');
 const axios = require('axios');
 
-if (
-	!process.env.API_KEY ||
-	!process.env.API_SECRET ||
-	!process.env.ACCESS_TOKEN ||
-	!process.env.ACCESS_TOKEN_SECRET ||
-	!process.env.USER_ID ||
-	!process.env.DISCORD_TOKEN
-) {
+if (!process.env.API_KEY || !process.env.API_SECRET || !process.env.ACCESS_TOKEN || !process.env.ACCESS_TOKEN_SECRET) {
 	console.error('APIキーのいずれかが設定されていません。.envファイルを確認してください。');
 	process.exit(1);
 }
