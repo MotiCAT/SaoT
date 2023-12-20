@@ -9,8 +9,8 @@ Discord Botのセットアップ方法が分からない方、TwitterのAPIKey�
 `.env.example`のファイル名を`.env`に変更してください。
 
 ```env
-APP_KEY=
-APP_SECRET=
+API_KEY=
+API_SECRET=
 ACCESS_TOKEN=
 ACCESS_TOKEN_SECRET=
 ```
