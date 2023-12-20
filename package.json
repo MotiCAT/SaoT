@@ -1,20 +1,33 @@
 {
-  "name": "saot",
-  "version": "1.0.0",
-  "description": "SpotifyのアクティビティをTwitterに投稿するDiscordBot",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "format": "prettier index.js --write"
-  },
-  "author": "MotiCAT",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^1.6.2",
-    "discord.js": "^14.14.1",
-    "dotenv": "^16.3.1",
-    "fs": "^0.0.1-security",
-    "prettier": "^3.1.1",
-    "twitter-api-v2": "^1.15.2"
-  }
+	"name": "saot",
+	"version": "1.0.0",
+	"description": "SpotifyのアクティビティをTwitterに投稿するDiscordBot",
+	"main": "index.js",
+	"scripts": {
+		"test": "ts-node src/index.ts",
+		"start": "npm run compile && node build/index.js",
+		"compile": "tsc -p .",
+		"format": "prettier . --write",
+		"lint": "npm run format && eslint ."
+	},
+	"author": "MotiCAT",
+	"license": "MIT",
+	"dependencies": {
+		"axios": "^1.6.2",
+		"discord.js": "^14.14.1",
+		"dotenv": "^16.3.1",
+		"fs": "^0.0.1-security",
+		"sharp": "^0.33.1",
+		"twitter-api-v2": "^1.15.2"
+	},
+	"devDependencies": {
+		"@trivago/prettier-plugin-sort-imports": "^4.3.0",
+		"@typescript-eslint/eslint-plugin": "^6.15.0",
+		"@typescript-eslint/parser": "^6.15.0",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"prettier": "^3.1.1",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.3.3"
+	}
 }
