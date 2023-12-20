@@ -5,6 +5,7 @@ Spotifyで聴いている曲を自動的にTwitterに投稿するDiscordBot
 ## Setup
 
 Discord Botのセットアップ方法が分からない方、TwitterのAPIKeyの取得方法が分からない方は各自調べてください。
+TypeScript何もわからない人は[こっち](https://github.com/MotiCAT/SAOT/tree/master)使ってください。
 
 `.env.example`のファイル名を`.env`に変更してください。
 
@@ -34,6 +35,7 @@ DISCORD_TOKEN=
   「**ステータスとしてSpotifyを表示する**」を有効化してください。
 
 ## 注意点
-
-当たり前のことですが、ボットを自分のサーバーに導入しない限りこのボットは機能しません。  
-**自分のアカウントがオフライン表示ではない事、自分のサーバーにボットがいること**を確認し使用してください。
+UbuntuやLinux等のOSでは、別途  
+`npm install --os=linux --cpu=x64 sharp`  
+`npm install --force @img/sharp-linux-x64`  
+を実行する必要があります。
