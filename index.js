@@ -12,6 +12,7 @@ const twiClient = new TwitterApi({
 });
 const fs = require('fs');
 const axios = require('axios');
+const sharp = require('sharp');
 
 if (!process.env.API_KEY || !process.env.API_SECRET || !process.env.ACCESS_TOKEN || !process.env.ACCESS_TOKEN_SECRET) {
 	console.error('APIキーのいずれかが設定されていません。.envファイルを確認してください。');
@@ -39,7 +40,8 @@ client.on('presenceUpdate', async (oldPresence, newPresence) => {
 	const imageUrl = spotifyActivity.assets.largeImageURL();
 	try {
 		const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-		fs.writeFile('image.png', response.data, (err) => {
+		const resizedBuffer = await sharp(response.data).resize(500, 500).toBuffer();
+		fs.writeFile('image.jpg', resizedBuffer, (err) => {
 			if (err) throw err;
 		});
 	} catch (err) {
@@ -48,7 +50,7 @@ client.on('presenceUpdate', async (oldPresence, newPresence) => {
 	}
 
 	try {
-		const media_Id = await twiClient.v1.uploadMedia('./image.png');
+		const media_Id = await twiClient.v1.uploadMedia('./image.jpg');
 		await twiClient.v2.tweet(`Now playing on Spotify: ${songName} by ${artistName}`, {
 			media: { media_ids: [media_Id] }
 		});
