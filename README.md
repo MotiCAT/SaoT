@@ -4,8 +4,7 @@ Spotifyで再生中の曲を自動的にTwitterに投稿するDiscordBotです�
 
 ## 機能
 
-- Spotifyで再生中の曲を自動的にTwitterに投稿します。
-- Discordのステータスを利用して、再生中の曲を取得します。
+- Discordのステータスを利用して、Spotifyで再生中の曲を取得し、自動的にTwitterに投稿します。
 
 ## ライセンス
 [MIT](LICENSE)
