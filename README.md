@@ -1,7 +1,7 @@
 # SaoT (Spotify activity on Twitter)
 
 Spotifyで再生中の曲を自動的にTwitterに投稿するDiscordBotです。  
-foobar2000に対応したものも作りました。[ここ](https://github.com/MotiCAT/SaoT/tree/master)
+foobar2000に対応したものも作りました。[ここ](https://github.com/MotiCAT/SaoT/tree/fb2k)
 
 ## 機能
 
