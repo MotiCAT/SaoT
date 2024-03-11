@@ -1,10 +1,11 @@
 # SaoT (Spotify activity on Twitter)
 
-Spotifyで再生中の曲を自動的にTwitterに投稿するDiscordBotです。
+Spotifyで再生中の曲を自動的にTwitterに投稿するDiscordBotですが、別ブランチでfoobar2000に対応した奴作りました。  
+Spotifyバージョンは[こっち](https://github.com/MotiCAT/SaoT/tree/master)
 
 ## 機能
 
-- Discordのステータスを利用して、Spotifyで再生中の曲を取得し、自動的にTwitterに投稿します。
+- Discordのステータスを利用して、foobar2000で再生中の曲を取得し、自動的にTwitterに投稿します。
 
 ## ライセンス
 [MIT](LICENSE)
@@ -53,23 +54,25 @@ DISCORD_TOKEN=
 npm install
 ```
 
-## SpotifyとDiscordの設定
+## foobar2000とDiscordの設定
 
-- Spotify  
-  Spotifyの設定メニューから、「**Spotifyで再生状況をシェアする**」を有効にしてください。
+- foobar2000  
+  [こちら](https://note.com/shirafuka_yayoi/n/n92af2e5c4673)の記事を参考に、**Discord Rich Presence Integration**を導入してください。  
 - Discord  
   Discordの設定メニューから、「アクティビティ設定」の「**現在のアクティビティをステータスに表示する**」と「**大きなサーバーに参加するとき、デフォルトでアクティビティ・ステータスを共有します。**」を有効にしてください。  
   「**大きなサーバーに参加するとき、デフォルトでアクティビティ・ステータスを共有します。**」に関しては有効にしたときに下記のような確認画面が出ますが、「はい」を押してください。  
   ![dialog](dialog.png)  
-  「ユーザー設定」の「**接続**」からSpotifyをDiscordアカウントにリンクさせてください。  
-  「**ステータスとしてSpotifyを表示する**」を有効にしてください。
 - Discord Bot  
   Discordの開発者ポータルからBotの設定ページに移動し、「**PRESENCE INTENT**」を有効にしてください。これをONにしないと起動が不可能です。
 
 ## 注意事項
 
 このBotは、自分のサーバーに導入されている場合のみ機能します。  
-**自分のアカウントがオフライン表示でないこと、および自分のサーバーにBotが存在すること**を確認してから使用してください。
+**自分のアカウントがオフライン表示でないこと、および自分のサーバーにBotが存在すること**を確認してから使用してください。  
+
+Discord Rich Presence Integrationの仕様上、Activityをカスタマイズすることができますが、このBotを使用する場合 Activityのタイトルに「**foobar2000**」が含まれていることが前提となっています。  
+また、曲名やアップロード者の名前も特定のフィールドから取得しているため、変更すると正常にツイートされない可能性があります。  
+タイトル以外のカスタマイズは控えるようにお願いいたします。
 
 ## プロジェクトの実行
 

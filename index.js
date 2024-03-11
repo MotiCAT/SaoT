@@ -29,18 +29,18 @@ client.on('ready', () => {
 });
 client.on('presenceUpdate', async (oldPresence, newPresence) => {
 	if (newPresence.userId !== process.env.USER_ID) return;
-	const spotifyActivity = newPresence.activities.find((activity) => activity.name === 'Spotify');
-	if (!spotifyActivity) return;
+	const fbActivity = newPresence.activities.find((activity) => activity.name.includes('foobar2000'));
+	if (!fbActivity) return;
 
-	const oldActivity = oldPresence.activities.find((activity) => activity.name === 'Spotify');
-	const { details: oldSongName, state: oldArtistName } = oldActivity || { details: '', state: '' };
+	const oldActivity = oldPresence.activities.find((activity) => activity.name.includes('foobar2000'));
+	const { details: oldArtistName, state: oldSongName } = oldActivity || { details: '', state: '' };
 
-	const { details: songName, state: artistName } = spotifyActivity;
+	const { details: artistName, state: songName } = fbActivity;
 	if (oldSongName === songName && oldArtistName === artistName) return;
-	const imageUrl = spotifyActivity.assets.largeImageURL();
+	const imageUrl = fbActivity.assets.largeImageURL();
 	try {
 		const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-		const resizedBuffer = await sharp(response.data).resize(500, 500).toBuffer();
+		const resizedBuffer = await sharp(response.data).resize(400, 400).toBuffer();
 		fs.writeFile('image.jpg', resizedBuffer, (err) => {
 			if (err) throw err;
 		});
@@ -51,7 +51,7 @@ client.on('presenceUpdate', async (oldPresence, newPresence) => {
 
 	try {
 		const media_Id = await twiClient.v1.uploadMedia('./image.jpg');
-		await twiClient.v2.tweet(`Now playing on Spotify: ${songName} by ${artistName}`, {
+		await twiClient.v2.tweet(`Now playing on foobar2000: ${songName} by ${artistName}`, {
 			media: { media_ids: [media_Id] }
 		});
 	} catch (err) {
